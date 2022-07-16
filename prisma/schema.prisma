@@ -51,7 +51,6 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
-    goals    Goal[]
     workouts Workout[]
 }
 
@@ -63,19 +62,8 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
-model Goal {
-    id String @id @default(cuid())
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    User   User?   @relation(fields: [userId], references: [id])
-    userId String?
-}
-
 model Workout {
     id          String @id @default(cuid())
-    type        String
     repetitions Int
 
     createdAt DateTime @default(now())
